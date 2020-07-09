@@ -1,0 +1,88 @@
+
+
+
+    <div class="row">
+      <div class="offset-sm-3 col-sm-6">
+
+        <div class="card text-blank border-0">
+          <div class="card-body">
+            <div class="card-title text-center">
+              <h5>Sign up for free</h5>
+            </div>
+            <div class="card-text">
+
+              <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" class="" action="index.html" method="post">
+                <div class="form-row">
+                  <div class="form-group col-sm-6">
+                    <input type="text"class = "form-control"
+                    name="" value="" [formControl]="myForm.controls['firstName']" placeholder="First Name">
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <input type="text"class = "form-control"
+                    name="" value="" [formControl]="myForm.controls['lastName']" placeholder="Last Name">
+                  </div>
+                </div>
+
+                <div class="alert alert-danger alert-dismissible" *ngIf="((!myForm.controls['firstName'].valid) || (!myForm.controls['lastName'].valid)) && ((myForm.controls['firstName'].touched) || (myForm.controls['lastName'].touched))  " >
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  First and Last Name are required.
+                </div>
+
+
+                <div class="form-group">
+                  <input type="tel" placeholder="Enter your Phone Number" class="form-control" [formControl]="myForm.controls['phone']" name="" value="">
+                </div>
+                <div class="alert alert-danger alert-dismissible" *ngIf="myForm.controls['phone'].touched && !myForm.controls['phone'].valid " >
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Phone Number is required.
+                </div>
+                <div class="form-group">
+                  <input type="email" placeholder="Enter you email" class="form-control" [formControl]="myForm.controls['email']" name="" value="">
+                  <small class="form-text custom-color">We'll never share your email with anyone else</small>
+
+                </div>
+                <div class="alert alert-danger alert-dismissible" *ngIf="myForm.controls['email'].touched && !myForm.controls['email'].valid">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Email is required.
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" [formControl]="myForm.controls['password']" placeholder="Password" name="" value="">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" placeholder="Confirm Password" [formControl]="myForm.controls['confirmPassword']" name="" value="">
+                </div>
+                <div class="alert alert-danger alert-dismissible" *ngIf="!myForm.controls['password'].valid && myForm.controls['password'].touched">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Password should be atleast 8 characters long.
+                </div>
+                <div class="text-center mt-3">
+
+                  <button type="submit" class="btn btn-warning" name="button" [disabled] = "!myForm.valid">Submit</button>
+                </div>
+              </form>
+
+
+
+              <!-- {{ myForm.controls['confirmPassword'].errors | json }} -->
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class='alert alert-success' *ngIf = "message.length > 0">
+          {{ message }}
+        </div>
+
+        <div class='alert alert-danger alert-dismissible' *ngIf = 'userError'>
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
+          {{ userError.message }}
+
+        </div>
+
+      </div>
+    </div>
+
+    {{emailVerified}}
+
